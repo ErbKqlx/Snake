@@ -11,6 +11,8 @@ namespace Snake.Models
 
 
         private Position snakeHead;
+        List<Position> tail = new List<Position>();
+
         private int length;
 
         public bool Died { get; private set; }
@@ -22,6 +24,10 @@ namespace Snake.Models
             {
                 snakeHead = value;
                 game.Field[value.Y][value.X].Type = CellType.Snake;
+                
+                
+                
+                
             }
         }
 
@@ -30,6 +36,7 @@ namespace Snake.Models
             this.game = game;
             this.length = length;
             SnakeHead = snake;
+            tail.Add(snakeHead);
             this.food = food;
         }
 
@@ -57,6 +64,14 @@ namespace Snake.Models
             if (!Died)
             {
                 SnakeHead = position;
+                for (int i = 1; i < tail.Count; i++)
+                {
+                    tail[i] = tail[i - 1];
+                    game.Field[tail[i].Y][tail[i].X].Type = CellType.Snake;
+                }
+
+                game.Field[tail[].Y][tail[].X].Type = CellType.None;
+                //tail.Dequeue();
             }
         }
 
@@ -74,6 +89,7 @@ namespace Snake.Models
                 food.Count--;
                 game.AddScore();
                 length++;
+                tail.Add(position);
             }
         }
 

@@ -76,7 +76,10 @@ namespace Snake.ViewModel
         {
             if (GameRunning && Enum.TryParse(parameter.ToString(), out Direction direction))
             {
-                game.Direction = direction;
+                if (game.Direction != direction)
+                {
+                    game.Direction = direction;
+                }
             }
         });
 
