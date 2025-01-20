@@ -63,14 +63,29 @@ namespace Snake.Models
 
             if (!Died)
             {
+                //if (tail.Count == 1)
+                //{
+                //    tail[0] = SnakeHead;
+                //}
+                
+                tail[0] = SnakeHead;
+                Position lastPos = tail[length - 1];
+                
                 SnakeHead = position;
-                for (int i = 1; i < tail.Count; i++)
+                
+
+                for (int i = 1; i < length; i++)
                 {
                     tail[i] = tail[i - 1];
                     game.Field[tail[i].Y][tail[i].X].Type = CellType.Snake;
                 }
 
-                game.Field[tail[].Y][tail[].X].Type = CellType.None;
+                
+                
+                game.Field[lastPos.Y][lastPos.X].Type = CellType.None;
+                
+                
+
                 //tail.Dequeue();
             }
         }
@@ -88,8 +103,9 @@ namespace Snake.Models
             {
                 food.Count--;
                 game.AddScore();
+                tail.Add(SnakeHead);
                 length++;
-                tail.Add(position);
+                
             }
         }
 
