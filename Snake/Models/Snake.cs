@@ -80,10 +80,8 @@ namespace Snake.Models
                     game.Field[tail[i].Y][tail[i].X].Type = CellType.Snake;
                 }
 
-                
-                
                 game.Field[lastPos.Y][lastPos.X].Type = CellType.None;
-                
+
                 
 
                 //tail.Dequeue();
@@ -103,7 +101,7 @@ namespace Snake.Models
             {
                 food.Count--;
                 game.AddScore();
-                tail.Add(SnakeHead);
+                tail.Add(tail[length-1]);
                 length++;
                 
             }

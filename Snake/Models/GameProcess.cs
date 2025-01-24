@@ -11,6 +11,8 @@ namespace Snake.Models
         private readonly MainViewModel viewModel;
         private readonly Food food;
         private readonly Snake snake;
+        //private readonly Snake snake1;
+        private bool isUpdated = false;
 
         private Direction currentDirection = Direction.Right;
 
@@ -23,6 +25,7 @@ namespace Snake.Models
             {
                 currentDirection = value;
                 Update();
+                isUpdated = true;
             }
         }
 
@@ -47,6 +50,7 @@ namespace Snake.Models
 
             food = new Food(Field);
             snake = new Snake(this, 1, new Position(0, 0), food);
+            //snake1 = new Snake(this, 1, new Position(0, 4), food);
         }
 
         private async void Run()
@@ -55,6 +59,7 @@ namespace Snake.Models
             {
                 while (true)
                 {
+                    //if (snake.Died || snake1.Died)
                     if (snake.Died)
                     {
                         viewModel.EndGame();
@@ -62,10 +67,17 @@ namespace Snake.Models
                     }
                     else
                     {
-                        Update();
+                        if (isUpdated == false)
+                        {
+                            Update();
+                            
+                        }
+                        
                     }
-
+                    isUpdated = false;
                     await Task.Delay(delay);
+                    
+
                 }
             }
             catch (Exception e)
@@ -92,6 +104,7 @@ namespace Snake.Models
         public void Update()
         {
             snake.Move(Direction);
+            //snake1.Move(Direction);
             food.Draw();
         }
     }
