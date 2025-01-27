@@ -12,7 +12,7 @@ namespace Snake.Models
         private readonly Food food;
         private readonly Snake snake;
         //private readonly Snake snake1;
-        private bool isUpdated = false;
+        //private bool isUpdated = false;
 
         private Direction currentDirection = Direction.Right;
 
@@ -25,7 +25,7 @@ namespace Snake.Models
             {
                 currentDirection = value;
                 Update();
-                isUpdated = true;
+                //isUpdated = true;
             }
         }
 
@@ -67,14 +67,15 @@ namespace Snake.Models
                     }
                     else
                     {
-                        if (isUpdated == false)
-                        {
-                            Update();
-                            
-                        }
+                        //if (isUpdated == false)
+                        //{
+                        //    Update();
+
+                        //}
+                        Update();
                         
                     }
-                    isUpdated = false;
+                    //isUpdated = false;
                     await Task.Delay(delay);
                     
 

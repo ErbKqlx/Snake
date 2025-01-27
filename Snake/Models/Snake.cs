@@ -1,4 +1,5 @@
 ﻿using Snake.Game;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Windows.Media;
 
@@ -31,12 +32,12 @@ namespace Snake.Models
             }
         }
 
-        public Snake(GameProcess game, int length, Position snake, Food food)
+        public Snake(GameProcess game, int length, Position startPos, Food food)
         {
             this.game = game;
             this.length = length;
-            SnakeHead = snake;
-            tail.Add(snakeHead);
+            SnakeHead = startPos;
+            //tail.Add(SnakeHead);
             this.food = food;
         }
 
@@ -72,11 +73,14 @@ namespace Snake.Models
                 Position lastPos = tail[length - 1];
                 
                 SnakeHead = position;
-                
 
                 for (int i = 1; i < length; i++)
                 {
-                    tail[i] = tail[i - 1];
+                    //if (length > 1 && i == 1) 
+                    //{
+                    //    tail[i]
+                    //}
+                    tail[i] = tail[i + 1];
                     game.Field[tail[i].Y][tail[i].X].Type = CellType.Snake;
                 }
 
@@ -96,7 +100,6 @@ namespace Snake.Models
             {
                 Died = true;
             }
-
             else if (game.Field[position.Y][position.X].Type == CellType.Food)
             {
                 food.Count--;
