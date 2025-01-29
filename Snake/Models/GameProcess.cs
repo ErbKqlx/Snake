@@ -12,7 +12,7 @@ namespace Snake.Models
         private readonly Food food;
         private readonly Snake snake;
         //private readonly Snake snake1;
-        private bool isUpdated = false;
+        //private bool isUpdated = false;
 
         private Direction currentDirection = Direction.Right;
 

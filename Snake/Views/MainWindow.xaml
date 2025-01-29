@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Snake" xmlns:viewmodel="clr-namespace:Snake.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#FF1B0A2F">
     <Window.InputBindings>
         <KeyBinding Key="Right" Command="{Binding MoveCommand}" CommandParameter="Right"/>
         <KeyBinding Key="Down" Command="{Binding MoveCommand}" CommandParameter="Down"/>
@@ -18,11 +18,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="505">
-            <TextBlock Margin="5" Text="Счет:" FontSize="30"/>
-            <TextBlock Margin="5" Text="{Binding Score}" FontSize="30" FontWeight="Bold"/>
+            <TextBlock Margin="5" Text="Счет:" FontSize="30" Foreground="White"/>
+            <TextBlock Margin="5" Text="{Binding Score}" FontSize="30" FontWeight="Bold" Foreground="White"/>
             <Button Margin="300,5,5,5" Padding="15,0" Command="{Binding StartCommand}" Content="Начать"/>
         </StackPanel>
-        <ItemsControl Grid.Row="1" Background="#FFFDF8C5" Margin="5" ItemsSource="{Binding Field}" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ItemsControl Grid.Row="1" Background="#FF402279" Margin="5" ItemsSource="{Binding Field}" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding}">
@@ -31,7 +31,7 @@
                                 <Border Width="30" Height="30" Margin="1" BorderThickness="1">
                                     <Border.Style>
                                         <Style TargetType="Border">
-                                            <Setter Property="BorderBrush" Value="Black"/>
+                                            <Setter Property="BorderBrush" Value="#FF1F0079"/>
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Type}" Value="Snake">
                                                     <Setter Property="BorderBrush" Value="Green"/>
