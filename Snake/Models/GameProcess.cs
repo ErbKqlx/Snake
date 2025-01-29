@@ -6,13 +6,13 @@ namespace Snake.Models
 {
     public class GameProcess
     {
-        private const int delay = 300;
+        private const int delay = 200;
 
         private readonly MainViewModel viewModel;
         private readonly Food food;
         private readonly Snake snake;
         //private readonly Snake snake1;
-        //private bool isUpdated = false;
+        private bool isUpdated = false;
 
         private Direction currentDirection = Direction.Right;
 
@@ -33,8 +33,8 @@ namespace Snake.Models
         {
             this.viewModel = viewModel;
 
-            int width = 30;
-            int height = 20;
+            int width = 15;
+            int height = 15;
 
             Field = new List<List<Cell>>();
             for (int i = 0; i < height; i++)
@@ -49,7 +49,7 @@ namespace Snake.Models
 
 
             food = new Food(Field);
-            snake = new Snake(this, 1, new Position(0, 0), food);
+            snake = new Snake(this, 0, new Position(0, 0), food);
             //snake1 = new Snake(this, 1, new Position(0, 4), food);
         }
 

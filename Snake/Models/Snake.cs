@@ -9,10 +9,11 @@ namespace Snake.Models
     {
         private readonly GameProcess game;
         private readonly Food food;
-
+        private readonly Queue<Position> tail;
 
         private Position snakeHead;
-        List<Position> tail = new List<Position>();
+        //private List<Position> tail = new List<Position>();
+        
 
         private int length;
 
@@ -37,8 +38,15 @@ namespace Snake.Models
             this.game = game;
             this.length = length;
             SnakeHead = startPos;
+            tail = new Queue<Position>();
+            //tail.Enqueue(SnakeHead);
             //tail.Add(SnakeHead);
             this.food = food;
+
+            //while (tail.Count < length)
+            //{
+            //    Move(Direction.Right);
+            //}
         }
 
         public void Move(Direction direction)
@@ -68,25 +76,61 @@ namespace Snake.Models
                 //{
                 //    tail[0] = SnakeHead;
                 //}
-                
-                tail[0] = SnakeHead;
-                Position lastPos = tail[length - 1];
-                
-                SnakeHead = position;
 
-                for (int i = 1; i < length; i++)
+                //tail[0] = SnakeHead;
+                //Position lastPos = tail[length - 1];
+                //Position lastPos;
+                //if (length == 1)
+                //{
+                //    lastPos = SnakeHead;
+                //}
+                //else
+                //{
+                //    lastPos = tail[length - 1];
+                //}
+                //Position lastPos = length == 1 ? SnakeHead : tail[length - 1];
+                //Position prevPos = SnakeHead;
+
+                //game.Field[SnakeHead.Y][SnakeHead.X].Type = CellType.None;
+                //tail.Dequeue();
+
+
+
+
+
+                //МАССИВ
+                /*for (int i = 0; i < length; i++)
                 {
                     //if (length > 1 && i == 1) 
                     //{
                     //    tail[i]
                     //}
-                    tail[i] = tail[i + 1];
+                    if (length == 1) 
+                    {
+                        tail[i] = prevPos;
+                        continue;
+                    }
+
+                    tail[i] = tail[i - 1];
                     game.Field[tail[i].Y][tail[i].X].Type = CellType.Snake;
                 }
+                game.Field[lastPos.Y][lastPos.X].Type = CellType.None;*/
 
-                game.Field[lastPos.Y][lastPos.X].Type = CellType.None;
+                //ОЧЕРЕДЬ
+                tail.Enqueue(SnakeHead);
+                SnakeHead = position;
 
-                
+                while (tail.Count > length)
+                {
+                    Position lastPos = tail.Dequeue();
+                    game.Field[lastPos.Y][lastPos.X].Type = CellType.None;
+                }
+
+
+
+
+
+
 
                 //tail.Dequeue();
             }
@@ -104,7 +148,17 @@ namespace Snake.Models
             {
                 food.Count--;
                 game.AddScore();
-                tail.Add(tail[length-1]);
+                /*if (length == 0)
+                {
+                    tail.Add(SnakeHead);
+                }
+                else
+                {
+                    tail.Add(tail[length - 1]);
+                }*/
+
+                //tail.Enqueue(position);
+
                 length++;
                 
             }
