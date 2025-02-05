@@ -69,6 +69,11 @@ namespace Snake.Models
                         //if (snake.Died || snake1.Died)
                         if (snake.Died)
                         {
+                            viewModel.EndGame(snake.Died);
+                            break;
+                        }
+                        else if (snake.length+1 == Field.Count * Field.Count)
+                        {
                             viewModel.EndGame();
                             break;
                         }

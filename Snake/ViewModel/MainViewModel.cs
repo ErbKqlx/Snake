@@ -11,6 +11,7 @@ namespace Snake.ViewModel
         private GameProcess game;
         private bool gameOver;
         private bool gameRunning;
+        private bool winner;
         private ICommand startCommand;
         private ICommand moveCommand;
 
@@ -54,6 +55,16 @@ namespace Snake.ViewModel
             }
         }
 
+        public bool Winner
+        {
+            get => winner;
+            set
+            {
+                winner = value;
+                OnPropertyChanged();
+            }
+        }
+
         //public ICommand StartCommand => startCommand = new RelayCommand();
 
         //public ICommand MoveCommand => moveCommand = new RelayCommand();
@@ -87,10 +98,16 @@ namespace Snake.ViewModel
             }
         });
 
-        public void EndGame()
+        public void EndGame(bool isDied)
         {
             GameRunning = false;
             GameOver = true;
+        }
+
+        public void EndGame()
+        {
+            GameRunning = false;
+            Winner = true;
         }
 
         private void NewGame()

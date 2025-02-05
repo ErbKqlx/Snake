@@ -15,7 +15,7 @@ namespace Snake.Models
         //private List<Position> tail = new List<Position>();
         
 
-        private int length;
+        public int length;
 
         public bool Died { get; private set; }
 

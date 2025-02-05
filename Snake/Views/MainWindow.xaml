@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Snake" xmlns:viewmodel="clr-namespace:Snake.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#FF1B0A2F">
+        Title="Змейка" Height="450" Width="800" Background="#FF1B0A2F">
     <Window.InputBindings>
         <KeyBinding Key="Right" Command="{Binding MoveCommand}" CommandParameter="Right"/>
         <KeyBinding Key="Down" Command="{Binding MoveCommand}" CommandParameter="Down"/>
@@ -19,8 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="505">
-            <TextBlock Margin="5" Text="Счет:" FontSize="30" Foreground="White"/>
-            <TextBlock Margin="5" Text="{Binding Score}" FontSize="30" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Margin="5" Text="{Binding Score, StringFormat=Счет: {0}}" FontSize="30" FontWeight="Bold" Foreground="White"/>
             <Button Margin="300,5,5,5" Padding="15,0" Command="{Binding StartCommand}" Content="Начать"/>
         </StackPanel>
         <ItemsControl Grid.Row="1" Background="#FF402279" Margin="5" ItemsSource="{Binding Field}" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -57,19 +56,33 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="#FF602AB1" BorderThickness="1">
             <Border.Style>
                 <Style TargetType="Border">
                     <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding GameOver}" Value="True">
+                        <DataTrigger Binding="{Binding GameRunning}" Value="False">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Border.Style>
             <StackPanel>
-                <TextBlock Margin="20,10" Text="ВЫ ПРОИГРАЛИ" FontSize="30" FontWeight="Bold"/>
+                <TextBlock Margin="20,10" FontSize="30" FontWeight="Bold">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Text" Value=""/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding GameOver}" Value="True">
+                                    <Setter Property="Text" Value="ВЫ ПРОИГРАЛИ"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Winner}" Value="True">
+                                    <Setter Property="Text" Value="ВЫ ВЫИГРАЛИ"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 <TextBlock Margin="20,10" Text="{Binding Score, StringFormat=Счет: {0}}" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
         </Border>
