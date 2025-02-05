@@ -11,6 +11,7 @@
         <KeyBinding Key="Down" Command="{Binding MoveCommand}" CommandParameter="Down"/>
         <KeyBinding Key="Left" Command="{Binding MoveCommand}" CommandParameter="Left"/>
         <KeyBinding Key="Up" Command="{Binding MoveCommand}" CommandParameter="Up"/>
+        <KeyBinding Key="Space" Command="{Binding StartCommand}"/>
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -56,5 +57,21 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="LightGray" BorderThickness="1">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding GameOver}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <StackPanel>
+                <TextBlock Margin="20,10" Text="ВЫ ПРОИГРАЛИ" FontSize="30" FontWeight="Bold"/>
+                <TextBlock Margin="20,10" Text="{Binding Score, StringFormat=Счет: {0}}" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

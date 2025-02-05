@@ -62,8 +62,15 @@ namespace Snake.ViewModel
         {
             if (!GameRunning)
             {
-                GameRunning = true;
-                game.Start();
+                if (!GameOver)
+                {
+                    GameRunning = true;
+                    game.Start();
+                }
+                else
+                {
+                    NewGame();
+                }
             }
             else
             {
@@ -76,15 +83,9 @@ namespace Snake.ViewModel
         {
             if (GameRunning && Enum.TryParse(parameter.ToString(), out Direction direction))
             {
-                if (game.Direction != direction)
-                {
-                    game.Direction = direction;
-                }
+                game.Direction = direction;
             }
         });
-
-             
-        
 
         public void EndGame()
         {

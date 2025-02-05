@@ -12,7 +12,8 @@ namespace Snake.Models
         private readonly Food food;
         private readonly Snake snake;
         //private readonly Snake snake1;
-        //private bool isUpdated = false;
+        private bool isUpdated = false;
+        private CancellationTokenSource cts = null;
 
         private Direction currentDirection = Direction.Right;
 
@@ -23,9 +24,13 @@ namespace Snake.Models
             get => currentDirection;
             set
             {
-                currentDirection = value;
-                Update();
-                //isUpdated = true;
+                if (value != currentDirection && (int)value % 2 != (int)currentDirection % 2)
+                {
+                    currentDirection = value;
+                    isUpdated = true;
+                    Update();
+                }
+                
             }
         }
 
@@ -55,36 +60,45 @@ namespace Snake.Models
 
         private async void Run()
         {
-            try
+            using (cts = new CancellationTokenSource())
             {
-                while (true)
+                try
                 {
-                    //if (snake.Died || snake1.Died)
-                    if (snake.Died)
+                    while (true)
                     {
-                        viewModel.EndGame();
-                        break;
-                    }
-                    else
-                    {
-                        //if (isUpdated == false)
-                        //{
-                        //    Update();
+                        //if (snake.Died || snake1.Died)
+                        if (snake.Died)
+                        {
+                            viewModel.EndGame();
+                            break;
+                        }
+                        else
+                        {
+                            //if (isUpdated == false)
+                            //{
+                            //    Update();
 
-                        //}
-                        Update();
-                        
-                    }
-                    //isUpdated = false;
-                    await Task.Delay(delay);
-                    
+                            //}
+                            Update();
 
+                        }
+                        //isUpdated = false;
+                        await Task.Delay(delay, cts.Token);
+                        if (isUpdated)
+                        {
+                            isUpdated = false;
+                            await Task.Delay(delay / 2, cts.Token);
+                        }
+
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
                 }
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            cts = null;
         } 
 
         public void AddScore()
@@ -99,7 +113,7 @@ namespace Snake.Models
 
         public void Stop()
         {
-            
+            cts.Cancel();
         }
 
         public void Update()
