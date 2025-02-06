@@ -68,7 +68,7 @@ namespace Snake.Models
                     break;
             }
 
-            Check(position);
+            Check(ref position);
 
             if (!Died)
             {
@@ -137,11 +137,26 @@ namespace Snake.Models
             }
         }
 
-        private void Check(Position position)
+        private void Check(ref Position position)
         {
-            if (position.X >= game.Field[0].Count || position.X < 0
-                || position.Y >= game.Field.Count || position.Y < 0
-                || game.Field[position.Y][position.X].Type == CellType.Snake)
+            if (position.X >= game.Field[0].Count)
+            {
+                position = new Position(0, position.Y);
+            }
+            else if (position.X < 0)
+            {
+                position = new Position(game.Field[0].Count-1, position.Y);
+            }
+            else if (position.Y >= game.Field.Count)
+            {
+                position = new Position(position.X, 0);
+            }
+            else if (position.Y < 0)
+            {
+                position = new Position(position.X, game.Field.Count-1);
+            }
+
+            if (game.Field[position.Y][position.X].Type == CellType.Snake)
             {
                 Died = true;
             }

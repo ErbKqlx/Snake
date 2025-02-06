@@ -39,8 +39,8 @@ namespace Snake.Models
         {
             this.viewModel = viewModel;
 
-            int width = 5;
-            int height = 5;
+            int width = 15;
+            int height = 15;
 
             Field = new List<List<Cell>>();
             for (int i = 0; i < height; i++)
