@@ -11,7 +11,6 @@ namespace Snake.Models
         private readonly MainViewModel viewModel;
         private readonly Food food;
         private readonly Snake snake;
-        private readonly int needFood;
         //private readonly Snake snake1;
         private bool isUpdated = false;
         private CancellationTokenSource cts = null;
@@ -56,7 +55,7 @@ namespace Snake.Models
 
             food = new Food(Field);
             snake = new Snake(this, 0, new Position(0, 0), food);
-            needFood = Field.Count * Field.Count / 2;
+            viewModel.NeedFood = Field.Count;
             //snake1 = new Snake(this, 1, new Position(0, 4), food);
         }
 
@@ -79,7 +78,7 @@ namespace Snake.Models
                             viewModel.EndGame(snake.Died);
                             break;
                         }
-                        else if (snake.length == needFood)
+                        else if (snake.length == Field.Count)
                         {
                             viewModel.EndGame();
                             break;

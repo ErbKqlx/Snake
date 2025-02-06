@@ -19,7 +19,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="505">
-            <TextBlock Margin="5" Text="{Binding Score, StringFormat=Счет: {0}}" FontSize="30" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Margin="5,5,0,5" Text="{Binding Score, StringFormat=Счет: {0}/}" FontSize="30" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Margin="0,5,5,5" Text="{Binding NeedFood}" FontSize="30" FontWeight="Bold" Foreground="White"/>
             <Button Margin="300,5,5,5" Padding="15,0" Command="{Binding StartCommand}" Content="Начать"/>
         </StackPanel>
         <ItemsControl Grid.Row="1" Background="#FF402279" Margin="5" ItemsSource="{Binding Field}" HorizontalAlignment="Center" VerticalAlignment="Center">

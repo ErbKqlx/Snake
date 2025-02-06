@@ -7,6 +7,7 @@ namespace Snake.ViewModel
     public class MainViewModel : NotifyPropertyChanged
     {
         private int score;
+        private int needFood;
         private List<List<Cell>> field;
         private GameProcess game;
         private bool gameOver;
@@ -21,6 +22,16 @@ namespace Snake.ViewModel
             set
             {
                 score = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NeedFood
+        {
+            get => needFood;
+            set
+            {
+                needFood = value;
                 OnPropertyChanged();
             }
         }
