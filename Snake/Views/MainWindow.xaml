@@ -41,6 +41,10 @@
                                                     <Setter Property="BorderBrush" Value="Red"/>
                                                     <Setter Property="Background" Value="LightPink"/>
                                                 </DataTrigger>
+                                                <DataTrigger Binding="{Binding Type}" Value="Head">
+                                                    <Setter Property="BorderBrush" Value="Green"/>
+                                                    <Setter Property="Background" Value="#FF059E07"/>
+                                                </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Border.Style>

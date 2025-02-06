@@ -4,6 +4,7 @@
     {
         None,
         Snake,
-        Food
+        Food,
+        Head
     }
 }

@@ -11,6 +11,7 @@ namespace Snake.Models
         private readonly MainViewModel viewModel;
         private readonly Food food;
         private readonly Snake snake;
+        private readonly int needFood;
         //private readonly Snake snake1;
         private bool isUpdated = false;
         private CancellationTokenSource cts = null;
@@ -38,8 +39,8 @@ namespace Snake.Models
         {
             this.viewModel = viewModel;
 
-            int width = 15;
-            int height = 15;
+            int width = 5;
+            int height = 5;
 
             Field = new List<List<Cell>>();
             for (int i = 0; i < height; i++)
@@ -55,8 +56,14 @@ namespace Snake.Models
 
             food = new Food(Field);
             snake = new Snake(this, 0, new Position(0, 0), food);
+            needFood = Field.Count * Field.Count / 2;
             //snake1 = new Snake(this, 1, new Position(0, 4), food);
         }
+
+        //private int CountCells()
+        //{
+        //    return Field.Sum(x => x.Count);
+        //}
 
         private async void Run()
         {
@@ -72,7 +79,7 @@ namespace Snake.Models
                             viewModel.EndGame(snake.Died);
                             break;
                         }
-                        else if (snake.length+1 == Field.Count * Field.Count)
+                        else if (snake.length == needFood)
                         {
                             viewModel.EndGame();
                             break;
@@ -108,7 +115,7 @@ namespace Snake.Models
 
         public void AddScore()
         {
-            viewModel.Score++;
+            viewModel.Score = snake.length;
         }
 
         public void Start()

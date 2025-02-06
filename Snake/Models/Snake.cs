@@ -25,7 +25,7 @@ namespace Snake.Models
             private set
             {
                 snakeHead = value;
-                game.Field[value.Y][value.X].Type = CellType.Snake;
+                game.Field[value.Y][value.X].Type = CellType.Head;
                 
                 
                 
@@ -118,6 +118,7 @@ namespace Snake.Models
 
                 //ОЧЕРЕДЬ
                 tail.Enqueue(SnakeHead);
+                game.Field[SnakeHead.Y][SnakeHead.X].Type = CellType.Snake;
                 SnakeHead = position;
 
                 while (tail.Count > length)
@@ -146,8 +147,6 @@ namespace Snake.Models
             }
             else if (game.Field[position.Y][position.X].Type == CellType.Food)
             {
-                food.Count--;
-                game.AddScore();
                 /*if (length == 0)
                 {
                     tail.Add(SnakeHead);
@@ -158,9 +157,10 @@ namespace Snake.Models
                 }*/
 
                 //tail.Enqueue(position);
-
+                food.Count--;
                 length++;
-                
+                game.AddScore();
+
             }
         }
 
