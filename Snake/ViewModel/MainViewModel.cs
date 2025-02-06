@@ -84,14 +84,15 @@ namespace Snake.ViewModel
         {
             if (!GameRunning)
             {
-                if (!GameOver)
+                if (GameOver || Winner)
                 {
-                    GameRunning = true;
-                    game.Start();
+                    
+                    NewGame();
                 }
                 else
                 {
-                    NewGame();
+                    GameRunning = true;
+                    game.Start();
                 }
             }
             else
@@ -123,11 +124,12 @@ namespace Snake.ViewModel
 
         private void NewGame()
         {
-            if (GameRunning)
-            {
-                game.Stop();
-            }
+            //if (GameRunning)
+            //{
+            //    game.Stop();
+            //}
             GameOver = false;
+            Winner = false;
             Score = 0;
             game = new GameProcess(this);
             Field = game.Field;
