@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Views\icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\icon.png" />
+  </ItemGroup>
+
 </Project>
