@@ -8,7 +8,6 @@ namespace Snake.Models
 
         public CellType Type
         {
-            //get { return type; }
             get => type;
             set
             {

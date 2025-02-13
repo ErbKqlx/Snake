@@ -11,7 +11,6 @@ namespace Snake.Models
         private readonly MainViewModel viewModel;
         private readonly Food food;
         private readonly Snake snake;
-        //private readonly Snake snake1;
         private bool isUpdated = false;
         private CancellationTokenSource cts = null;
 
@@ -56,13 +55,7 @@ namespace Snake.Models
             food = new Food(Field);
             snake = new Snake(this, 0, new Position(0, 0), food);
             viewModel.NeedFood = Field.Count;
-            //snake1 = new Snake(this, 1, new Position(0, 4), food);
         }
-
-        //private int CountCells()
-        //{
-        //    return Field.Sum(x => x.Count);
-        //}
 
         private async void Run()
         {
@@ -72,7 +65,6 @@ namespace Snake.Models
                 {
                     while (true)
                     {
-                        //if (snake.Died || snake1.Died)
                         if (snake.Died)
                         {
                             viewModel.EndGame(snake.Died);
@@ -85,15 +77,9 @@ namespace Snake.Models
                         }
                         else
                         {
-                            //if (isUpdated == false)
-                            //{
-                            //    Update();
-
-                            //}
                             Update();
 
                         }
-                        //isUpdated = false;
                         await Task.Delay(delay, cts.Token);
                         if (isUpdated)
                         {
@@ -131,7 +117,6 @@ namespace Snake.Models
         public void Update()
         {
             snake.Move(Direction);
-            //snake1.Move(Direction);
             food.Draw();
         }
     }

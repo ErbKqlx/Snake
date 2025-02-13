@@ -5,7 +5,6 @@ namespace Snake.Models
     public class Food
     {
         private readonly Random rnd;
-
         public readonly List<List<Cell>> field;
 
         public int Count { get; set; }

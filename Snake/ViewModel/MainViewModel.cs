@@ -76,10 +76,6 @@ namespace Snake.ViewModel
             }
         }
 
-        //public ICommand StartCommand => startCommand = new RelayCommand();
-
-        //public ICommand MoveCommand => moveCommand = new RelayCommand();
-
         public ICommand StartCommand => startCommand = new RelayCommand(parameter =>    
         {
             if (!GameRunning)
@@ -124,10 +120,6 @@ namespace Snake.ViewModel
 
         private void NewGame()
         {
-            //if (GameRunning)
-            //{
-            //    game.Stop();
-            //}
             GameOver = false;
             Winner = false;
             Score = 0;

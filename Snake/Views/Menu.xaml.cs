@@ -35,22 +35,5 @@ namespace Snake.Views
         {
             this.Close();
         }
-
-        private void Button_MouseEnter(object sender, MouseEventArgs e)
-        {
-            //Button button = sender as Button;
-
-            //button.Background = Brushes.White;
-            //button.BorderBrush = Brushes.Purple;
-            //button.Foreground = Brushes.Black;
-        }
-
-        private void Button_MouseLeave(object sender, MouseEventArgs e)
-        {
-            //Button button = sender as Button;
-            //button.Background = Brushes.White;
-            //button.BorderBrush = Brushes;
-            //button.Foreground = Brushes.White;
-        }
     }
 }

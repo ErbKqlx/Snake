@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Menu" Height="450" Width="800" Background="#FF1B0A2F" Icon="/Views/icon.png">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button Content="Начать" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ButtonStart_Click" Height="46" Width="140" Background="#FF471286" Foreground="White" Margin="0,217,0,0" FontSize="20" MouseEnter="Button_MouseEnter"/>
-        <Button Content="Выход" HorizontalAlignment="Center" Margin="0,282,0,0" VerticalAlignment="Top" Click="ButtonExit_Click" Height="46" Width="140" Background="#FF471286" Foreground="White" FontSize="20" MouseEnter="Button_MouseEnter"/>
+        <Button Content="Начать" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ButtonStart_Click" Height="46" Width="140" Background="#FF471286" Foreground="White" Margin="0,217,0,0" FontSize="20"/>
+        <Button Content="Выход" HorizontalAlignment="Center" Margin="0,282,0,0" VerticalAlignment="Top" Click="ButtonExit_Click" Height="46" Width="140" Background="#FF471286" Foreground="White" FontSize="20"/>
         <Label Content="Змейка" HorizontalAlignment="Center" Margin="0,86,0,0" VerticalAlignment="Top" Foreground="White" FontSize="36"/>
     </Grid>
 </Window>
