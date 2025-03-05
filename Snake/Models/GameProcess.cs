@@ -6,6 +6,7 @@ namespace Snake.Models
 {
     public class GameProcess
     {
+        //задержка в 2 секунды перед каждым движением змейки
         private const int delay = 200;
 
         private readonly MainViewModel viewModel;
@@ -18,11 +19,13 @@ namespace Snake.Models
 
         public List<List<Cell>> Field { get; }
 
+        //смена направления движения
         public Direction Direction
         {
             get => currentDirection;
             set
             {
+                //можно ли сменить направление
                 if (value != currentDirection && (int)value % 2 != (int)currentDirection % 2)
                 {
                     currentDirection = value;
@@ -40,6 +43,7 @@ namespace Snake.Models
             int width = 15;
             int height = 15;
 
+            //создаем поле
             Field = new List<List<Cell>>();
             for (int i = 0; i < height; i++)
             {
@@ -65,21 +69,25 @@ namespace Snake.Models
                 {
                     while (true)
                     {
+                        //если змейка врезалась в себя
                         if (snake.Died)
                         {
                             viewModel.EndGame(snake.Died);
                             break;
                         }
+                        //если длина змейки равна кол-ву клеток по высоте, то выигрываем
                         else if (snake.length == Field.Count)
                         {
                             viewModel.EndGame();
                             break;
                         }
+                        //иначе обновляем
                         else
                         {
                             Update();
 
                         }
+                        //после каждого обновления происходит задержка с указанным выше временем
                         await Task.Delay(delay, cts.Token);
                         if (isUpdated)
                         {
@@ -91,6 +99,7 @@ namespace Snake.Models
                     }
                 }
                 catch (TaskCanceledException) { }
+                //если произошла ошибка во время игрового процесса
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);

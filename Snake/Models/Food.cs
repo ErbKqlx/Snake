@@ -15,6 +15,7 @@ namespace Snake.Models
             this.field = field;
         }
 
+        //отображаем еду на рандомной клетке
         public void Draw()
         {
             if (Count < 2)

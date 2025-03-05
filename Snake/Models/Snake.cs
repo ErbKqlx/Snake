@@ -19,6 +19,7 @@ namespace Snake.Models
             private set
             {
                 snakeHead = value;
+                //выделяем голову отдельно
                 game.Field[value.Y][value.X].Type = CellType.Head;
             }
         }
@@ -35,6 +36,7 @@ namespace Snake.Models
         public void Move(Direction direction)
         {
             Position position = SnakeHead;
+            //смещение змейки на одну клетку в указанном направлении
             switch (direction)
             {
                 case Direction.Left:
@@ -69,6 +71,7 @@ namespace Snake.Models
 
         private void Check(ref Position position)
         {
+            //если змейка вышла за границу поля
             if (position.X >= game.Field[0].Count)
             {
                 position = new Position(0, position.Y);
@@ -86,10 +89,12 @@ namespace Snake.Models
                 position = new Position(position.X, game.Field.Count-1);
             }
 
+            //если змейка врезалась в себя
             if (game.Field[position.Y][position.X].Type == CellType.Snake)
             {
                 Died = true;
             }
+            //если змейка прикоснулась к еде
             else if (game.Field[position.Y][position.X].Type == CellType.Food)
             {
                 food.Count--;
